@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&display=swap');
+
+/* primary colors */
+$Pale-blue       : hsl(225, 100%, 94%);
+$Bright-blue     : hsl(245, 75%, 52%);
+$Pale-blue-light : hsla(225, 100%, 94%, 0.4);
+
+/* neutral colors */
+$Dark-blue       : hsl(223, 47%, 23%);
+$Very-pale-blue  : hsl(225, 100%, 98%);
+$Desaturated-blue: hsl(224, 23%, 55%);
+
+/* fonts */
+$Red-hat: 'Red Hat Display',
+sans-serif;
+
+/* mixin */
+@mixin flex() {
+    display        : flex;
+    align-items    : center;
+    flex-direction : column;
+    justify-content: center;
+}
+
+@mixin btn() {
+    width      : 100%;
+    border     : transparent;
+    padding    : 1.1rem 0;
+    font-size  : 1rem;
+    font-weight: 700;
+    font-family: $Red-hat;
+}
+
+* {
+    margin    : 0;
+    padding   : 9;
+    box-sizing: border-box;
+}
+
+body {
+    @include flex();
+    color           : $Dark-blue;
+    padding         : 1em;
+    font-size       : 16px;
+    text-align      : center;
+    min-height      : 100vh;
+    font-family     : $Red-hat;
+    background-color: $Pale-blue;
+
+    .card {
+        @include flex();
+        position        : relative;
+        overflow        : hidden;
+        box-shadow      : 0px 50px 32px -23px hsl(245, 75%, 52%, 0.1);
+        border-radius   : 1.2rem;
+        background-color: $Very-pale-blue;
+
+        .card__main {
+            @include flex();
+            gap    : 2em;
+            padding: 1.5em;
+
+            .main__info {
+                padding: 0 1em;
+
+                h1 {
+                    font-size    : 1.5rem;
+                    font-weight  : 800;
+                    margin-bottom: 1.5rem;
+                }
+
+                p {
+                    color      : $Desaturated-blue;
+                    line-height: 1.8rem;
+                }
+            }
+
+            .main__plan {
+                @include flex();
+                width           : 100%;
+                padding         : 1em;
+                border-radius   : .5rem;
+                flex-direction  : row;
+                justify-content : space-between;
+                background-color: $Pale-blue-light;
+
+                .plan__price {
+                    @include flex();
+                    flex-direction: row;
+
+                    ul {
+                        padding   : 0 0 0 1.5em;
+                        font-size : .94rem;
+                        list-style: none;
+
+                        li:first-child {
+                            font-weight  : 800;
+                            margin-bottom: .3rem;
+                        }
+
+                        li:nth-child(2) {
+                            color: $Desaturated-blue;
+                        }
+                    }
+                }
+
+                span {
+                    color          : $Bright-blue;
+                    cursor         : pointer;
+                    font-size      : .9rem;
+                    font-weight    : 700;
+                    text-decoration: underline;
+
+                    &:hover {
+                        color: hsl(245, 75%, 62%);
+                    }
+                }
+            }
+
+            .main__payment {
+                @include flex();
+                gap  : .5em;
+                width: 100%;
+
+                button {
+                    cursor: pointer;
+                }
+
+                .payment__btn {
+                    @include btn();
+                    color           : $Very-pale-blue;
+                    box-shadow      : 0px 25px 32px -23px hsl(245, 75%, 52%, 0.8);
+                    border-radius   : .8em;
+                    background-color: $Bright-blue;
+
+                    &:hover {
+                        background-color: hsl(245, 75%, 62%);
+                    }
+                }
+
+                .payment__cancel {
+                    @include btn();
+                    color           : $Desaturated-blue;
+                    background-color: transparent;
+
+                    &:hover {
+                        color: $Dark-blue;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* media query desktop */
+@media (min-width: 768px) {
+    body {
+        .card {
+            width: 400px;
+        }
+    }
+}
